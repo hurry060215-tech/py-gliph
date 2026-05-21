@@ -1,0 +1,61 @@
+[build-system]
+requires = ["setuptools>=64", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "pygliph"
+version = "0.1.0"
+description = "Pure-Python port of the R package turboGliph — GLIPH and GLIPH2 specificity-group clustering of T-cell receptor CDR3 repertoires."
+readme = "README.md"
+requires-python = ">=3.9"
+license = { file = "LICENSE" }
+authors = [
+    { name = "Zehua Zeng", email = "starlitnightly@163.com" },
+]
+keywords = [
+    "GLIPH", "GLIPH2", "TCR", "T-cell-receptor", "CDR3", "specificity-group",
+    "turboGliph", "immune-repertoire", "AIRR-seq", "motif-enrichment",
+    "antigen-specificity", "immunoinformatics",
+]
+classifiers = [
+    "Development Status :: 4 - Beta",
+    "Intended Audience :: Science/Research",
+    "License :: OSI Approved :: Apache Software License",
+    "Operating System :: OS Independent",
+    "Programming Language :: Python :: 3",
+    "Programming Language :: Python :: 3 :: Only",
+    "Topic :: Scientific/Engineering :: Bio-Informatics",
+]
+
+dependencies = [
+    "numpy>=1.23",
+    "scipy>=1.10",
+    "pandas>=1.5",
+    "networkx>=2.8",
+]
+
+[project.optional-dependencies]
+plot = ["matplotlib>=3.6"]
+dev = ["pytest>=7", "pytest-cov", "ruff", "matplotlib>=3.6"]
+
+[project.urls]
+Homepage = "https://github.com/omicverse/py-gliph"
+Repository = "https://github.com/omicverse/py-gliph"
+Issues = "https://github.com/omicverse/py-gliph/issues"
+"Upstream R package" = "https://github.com/HetzDra/turboGliph"
+"Upstream (omicverse)" = "https://github.com/Starlitnightly/omicverse"
+
+[tool.setuptools.packages.find]
+include = ["pygliph*"]
+exclude = ["tests*", "examples*", "turboGliph-ref*"]
+
+[tool.setuptools.package-data]
+pygliph = ["data/*.tsv", "data/*.txt", "data/*.tsv.gz"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+filterwarnings = [
+    "ignore::DeprecationWarning",
+    "ignore::FutureWarning",
+    "ignore::RuntimeWarning",
+]
